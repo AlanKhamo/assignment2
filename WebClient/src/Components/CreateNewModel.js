@@ -1,149 +1,212 @@
-import { React, useState } from 'react'
-import { Post } from '../Services/Post'
+import React from 'react';
+import { useState } from 'react';
+function TilføjModel(){
+    return(
+        <React.Fragment>
+                  <div> Tilføj Model </div> 
+                  <br></br>  
+                <MyForm></MyForm>
+                <br></br>    
+        </React.Fragment>
+    )
+}
 
-const PostModel = "api/Models";
-export function PostNewModel() {
-    const [firstName, setfirstName] = useState("");
-    const [lastName, setlastName] = useState("");
+function PutModel(event){
+    event.preventDefault()
+    console.log(event.target[0].value)
+    console.log(event.target[1].value) 
+    const  payload = {
+        "firstName": event.target[0].value,
+        "lastName": event.target[1].value,
+        "email": event.target[2].value,
+        "phoneNo": event.target[3].value,
+        "addresLine1": event.target[4].value,
+        "addresLine2": event.target[5].value,
+        "zip": event.target[6].value,
+        "city": event.target[7].value,
+        "country": event.target[8].value,
+        "birthDate": new Date(event.target[9].value).toISOString(),
+        "nationality": event.target[10].value,
+        "height": event.target[11].value,
+        "shoeSize": event.target[12].value,
+        "hairColor": event.target[13].value,
+        "eyeColor": event.target[14].value,
+        "comments": event.target[15].value,
+        "password": event.target[16].value,
+    }
+    fetch('https://localhost:7181/api/Models', {
+    method: 'POST', 
+    headers: {
+        'Accept': 'application/json',
+        'Authorization': 'Bearer ' + localStorage.getItem("token"),
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload)
+    })
+    .then(res => res.json())
+    .catch(error => alert('Something bad happened: ' + error));
+}
+
+function MyForm() {
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
-    const [phoneNo, setphoneNo] = useState("");
-    const [addresLine1, setaddresLine1] = useState("");
-    const [addresLine2, setaddresLine2] = useState("");
+    const [phoneNo, setPhoneNo] = useState("");
+    const [addressLine1, setAddressLine1] = useState("");
+    const [addressLine2, setAddressLine2] = useState("");
     const [zip, setZip] = useState("");
     const [city, setCity] = useState("");
     const [country, setCountry] = useState("");
-    const [birthDate, setbirthDate] = useState("");
+    const [birthday, setBirthday] = useState(new Date());
     const [nationality, setNationality] = useState("");
     const [height, setHeight] = useState("");
-    const [shoesize, setShoesize] = useState("");
-    const [haircolor, setHaircolor] = useState("");
-    const [eyecolor, setEyecolor] = useState("");
+    const [shoeSize, setShoeSize] = useState("");
+    const [hairColor, setHairColor] = useState("");
+    const [eyeColor, setEyeColor] = useState("");
     const [comments, setComments] = useState("");
     const [password, setPassword] = useState("");
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        var object = {
-            firstName: firstName,
-            lastName: password,
-            email: email,
-            phoneNo: phoneNo,
-            addresLine1: addresLine1,
-            addresLine2: addresLine2,
-            zip: zip,
-            city: city,
-            country: country,
-            birthDate: birthDate,
-            nationality: nationality,
-            height: height,
-            shoesize: shoesize,
-            haircolor: haircolor,
-            eyecolor: eyecolor,
-            comments: comments,
-            password: password
-
-        };
-
-        Post({ object: object, Endpoint: PostModel })
-        alert("En manager har oprettet en ny model");
-
-    };
-
     return (
-        <div className="react-hooks-form">
-            <h1>Tilføj Model</h1>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label id="firstname" htmlFor="firstName">FirstName</label>
-                    <input onChange={(e) => setfirstName(e.target.value)} type="text" value={firstName}></input>
-                </div>
-
-                <div>
-                    <label id="lastname" htmlFor="lastName">LastName</label>
-                    <input onChange={(e) => setlastName(e.target.value)} type="text" value={lastName}></input>
-                </div>
-
-                <div>
-                    <label id="email" htmlFor="email">Email</label>
-                    <input onChange={(e) => setEmail(e.target.value)} type="text" value={email}></input>
-                </div>
-
-                <div>
-                    <label id="phoneNo" htmlFor="phoneNo">PhoneNumber</label>
-                    <input onChange={(e) => setphoneNo(e.target.value)} type="text" value={phoneNo}></input>
-                </div>
-
-                <div>
-                    <label id="addresLine1" htmlFor="addresLine1">Adresse1</label>
-                    <input onChange={(e) => setaddresLine1(e.target.value)} type="text" value={addresLine1}></input>
-                </div>
-
-                <div>
-                    <label id="addresLine2" htmlFor="addresLine2">Adresse2</label>
-                    <input onChange={(e) => setaddresLine2(e.target.value)} type="text" value={addresLine2}></input>
-                </div>
-
-                <div>
-                    <label id="zip" htmlFor="zip">Zip</label>
-                    <input onChange={(e) => setZip(e.target.value)} type="text" value={zip}></input>
-                </div>
-
-                <div>
-                    <label id="city" htmlFor="city">City</label>
-                    <input onChange={(e) => setCity(e.target.value)} type="text" value={city}></input>
-                </div>
-
-                <div>
-                    <label id="country" htmlFor="country">Country</label>
-                    <input onChange={(e) => setCountry(e.target.value)} type="text" value={country}></input>
-                </div>
-
-                <div>
-                    <label id="birthDate" htmlFor="birthDate">BirthDate</label>
-                    <input onChange={(e) => setbirthDate(e.target.value)} type="Date" value={birthDate}></input>
-                </div>
-
-                <div>
-                    <label id="nationality" htmlFor="nationality">Nationality</label>
-                    <input onChange={(e) => setNationality(e.target.value)} type="text" value={nationality}></input>
-                </div>
-
-                <div>
-                    <label id="height" htmlFor="height">Height</label>
-                    <input onChange={(e) => setHeight(e.target.value)} type="text" value={height}></input>
-                </div>
-
-                <div>
-                    <label id="shoeSize" htmlFor="shoeSize">ShoeSize</label>
-                    <input onChange={(e) => setShoesize(e.target.value)} type="text" value={shoesize}></input>
-                </div>
-
-                <div>
-                    <label id="hairColor" htmlFor="hairColor">HairColor</label>
-                    <input onChange={(e) => setHaircolor(e.target.value)} type="text" value={haircolor}></input>
-                </div>
-
-                <div>
-                    <label id="eyeColor" htmlFor="eyeColor">EyeColor</label>
-                    <input onChange={(e) => setEyecolor(e.target.value)} type="text" value={eyecolor}></input>
-                </div>
-
-                <div>
-                    <label id="comments" htmlFor="comments">Comments</label>
-                    <input onChange={(e) => setComments(e.target.value)} type="text" value={comments}></input>
-                </div>
-
-                <div>
-                    <label id="password" htmlFor="password">Password</label>
-                    <input onChange={(e) => setPassword(e.target.value)} type="password" value={password}></input>
-                </div>
-
-                <button type={"submit"} >Opret modellen</button>
-
-            </form>
-
+      <form onSubmit={PutModel}>
+        <label>Enter firstname:
+          <input
+            type="text" 
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+          />
+        </label>
+        <br></br>
+        <label>Enter lastname:
+          <input
+            type="text"
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
+          />
+        <br></br>
+        </label>
+        <label>Enter email:
+          <input
+            type="text" 
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </label>
+        <br></br>
+        <label>Enter phone:
+          <input
+            type="text" 
+            value={phoneNo}
+            onChange={(e) => setPhoneNo(e.target.value)}
+          />
+        </label>
+        <br></br>
+        <label>Enter addressLine1:
+          <input
+            type="text" 
+            value={addressLine1}
+            onChange={(e) => setAddressLine1(e.target.value)}
+          />
+        </label>
+        <br></br>
+        <label>Enter addressLine2:
+          <input
+            type="text" 
+            value={addressLine2}
+            onChange={(e) => setAddressLine2(e.target.value)}
+          />
+        </label>
+        <br></br>
+        <label>Enter zip:
+          <input
+            type="text" 
+            value={zip}
+            onChange={(e) => setZip(e.target.value)}
+          />
+        </label>
+        <br></br>
+        <label>Enter city:
+          <input
+            type="text" 
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
+          />
+        </label>
+        <br></br>
+        <label>Enter country:
+          <input
+            type="text" 
+            value={country}
+            onChange={(e) => setCountry(e.target.value)}
+          />
+        </label>
+        <br></br>
+        <label>Enter birthday:
+          <input
+            type={Date} 
+            value={birthday}
+            onChange={(e) => setBirthday(e.target.value)}
+          />
+        </label>
+        <br></br>
+        <label>Enter nationality:
+          <input
+            type="text" 
+            value={nationality}
+            onChange={(e) => setNationality(e.target.value)}
+          />
+        </label>
+        <br></br>
+        <label>Enter height:
+          <input
+            type="text" 
+            value={height}
+            onChange={(e) => setHeight(e.target.value)}
+          />
+        </label>
+        <br></br>
+        <label>Enter shoeSize:
+          <input
+            type="text" 
+            value={shoeSize}
+            onChange={(e) => setShoeSize(e.target.value)}
+          />
+        </label>
+        <br></br>
+        <label>Enter hairColor:
+          <input
+            type="text" 
+            value={hairColor}
+            onChange={(e) => setHairColor(e.target.value)}
+          />
+        </label>
+        <br></br>
+        <label>Enter eyeColor:
+          <input
+            type="text" 
+            value={eyeColor}
+            onChange={(e) => setEyeColor(e.target.value)}
+          />
+        </label>
+        <br></br>
+        <label>Enter comments:
+          <input
+            type="text" 
+            value={comments}
+            onChange={(e) => setComments(e.target.value)}
+          />
+        </label>
+        <br></br>
+        <label>Enter password:
+          <input
+            type="text" 
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </label>
+        <div>
+          <button type="submit">Submit</button>
         </div>
+      </form>
     )
-
-};
+}
+export default TilføjModel;

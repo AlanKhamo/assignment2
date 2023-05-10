@@ -1,60 +1,83 @@
-import { React, useState } from 'react'
-import { Post } from '../Services/Post'
+import React from 'react';
+import { useState } from 'react';
+function TilføjManager(){
+    return(
+        <React.Fragment>
+                  <div> Tilføj Manager </div> 
+                  <br></br>  
+                <MyForm></MyForm>
+                <br></br>    
+        </React.Fragment>
+    )
+}
 
+function PutManager(event){
+    event.preventDefault()
+    console.log(event.target[0].value)
+    console.log(event.target[1].value)
 
-const Post_Manager = "api/Managers";
-export function CreateNewManager() {
-    const [firstName, setfirstName] = useState("");
-    const [lastName, setlastName] = useState("");
+    const  payload = {
+        "firstName": event.target[0].value,
+        "lastName": event.target[1].value,
+        "email": event.target[2].value,
+        "password": event.target[3].value,
+    }
+    fetch('https://localhost:7181/api/Managers', {
+    method: 'POST', 
+    headers: {
+        'Accept': 'application/json',
+        'Authorization': 'Bearer ' + localStorage.getItem("token"),
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload)
+    })
+    .then(res => res.json())
+    .catch(error => alert('Something bad happened: ' + error));
+}
+
+function MyForm() {
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        var object = {
-            firstName: firstName,
-            lastName: password,
-            email: email,
-            password: password
-
-        };
-
-        Post({ object: object, Endpoint: Post_Manager })
-        alert("En manager har oprettet en ny Manager");
-
-    };
-
     return (
-        <div className="react-hooks-form">
-            <h1>Tilføj ny Manager</h1>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label id="firstname" htmlFor="firstName">FirstName</label>
-                    <input onChange={(e) => setfirstName(e.target.value)} type="text" value={firstName}></input>
-                </div>
-
-                <div>
-                    <label id="lastname" htmlFor="lastName">LastName</label>
-                    <input onChange={(e) => setlastName(e.target.value)} type="text" value={lastName}></input>
-                </div>
-
-                <div>
-                    <label id="email" htmlFor="email">Email</label>
-                    <input onChange={(e) => setEmail(e.target.value)} type="text" value={email}></input>
-                </div>
-
-
-                <div>
-                    <label id="password" htmlFor="password">Password</label>
-                    <input onChange={(e) => setPassword(e.target.value)} type="password" value={password}></input>
-                </div>
-
-                <button type={"submit"} >Opret Manager</button>
-
-            </form>
-
+      <form onSubmit={PutManager}>
+        <label>Enter firstname:
+          <input
+            type="text" 
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+          />
+        </label>
+        <br></br>
+        <label>Enter lastname:
+          <input
+            type="text"
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
+          />
+        <br></br>
+        </label>
+        <label>Enter email:
+          <input
+            type="text" 
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </label>
+        <br></br>
+        <label>Enter password:
+          <input
+            type="text" 
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </label>
+        <div>
+          <button type="submit">Submit</button>
         </div>
+      </form>
     )
-
-};
+}
+export default TilføjManager;
