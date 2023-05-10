@@ -22,7 +22,9 @@ return (
     <nav> 
         <u1>
             <li><Link to ="/Login">Login</Link></li>
-        
+            <li><Link to ="/DeleteModelFromJob">delete Model from Job</Link></li>
+            <li><Link to ="/SeeJob">See Jobs</Link></li>
+            
             {/* <li><Link to ="/nyModel">Opret Ny Model</Link></li>
             <li><Link to ="/nytJob">Opret Nyt Job </Link></li>
             <li><Link to ="/modelTilJob">Tilføj model til job</Link></li>
@@ -35,17 +37,18 @@ return (
 
     <Routes>
      <Route element={<PrivateRoutes/>}>
-    
      
      {/* <Route path="/nyModel" element={<CreateNewModel/>} ></Route>
      <Route path="/nytJob" element={<NyJob/>} ></Route>
      <Route path="/modelTilJob" element={<AddModelToJOb/>} ></Route>
-     <Route path="/modelFraJob" element={<DeleteModelFromJob/>} ></Route>
-     <Route path="/SeJobs" element={<SeeJob/>} ></Route>
+    
      <Route path="/addUdgift" element={<AddExpenseToJob/>} ></Route> */}
      </Route>
-
+    
      <Route path ="/Login" element={<Login/>} ></Route>
+     <Route path="/DeleteModelFromJob" element={<DeleteModelFromJob/>} ></Route>
+     <Route path="/SeeJob" element={<SeeJob/>} ></Route>
+     
    </Routes>
    </Router>
     </>

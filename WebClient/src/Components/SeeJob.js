@@ -1,57 +1,47 @@
-import { React, useEffect, useState } from "react";
-import SeeJob from "Components/SeeJob";
-import { Get } from "/Services/Get";
-import { Table } from "react-bootstrap";
-
-export function SeeJob() {
-    return (
-        <div>
-            <SeeJobs />
-        </div>
-    );
-}
-export function SeeJobs() {
-    const [jobsList, setJobList] = useState([]);
-    const getJobs = "api/Jobs"
+import React, { useEffect, useState } from "react";
+function SeJobs(){
+    const [data, setData] = useState([]);
+    const [id, setId] = useState([])
+    const fetchData = () => {
+        var url = "https://localhost:7181/api/Jobs";
+        return fetch(url, {
+            method: 'GET',
+            headers: {
+              'Authorization': 'Bearer ' + localStorage.getItem("token"),
+              'Content-Type': 'application/json'
+            }
+            })
+              .then((response) => response.json())
+              .then((data) => setData(data));
+        }
+    
 
     useEffect(() => {
-        Get({ Endpost: getJobs }).then((value) => {
-            setJobList(value);
-        });
-    }, []);
-
-
-    return (
-        <div>
-            <h3>Alle jobs </h3>
-            <Table striped bordered hover variant="dark">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Customer</th>
-                        <th>Start date</th>
-                        <th>Location</th>
-                        <th>Days</th>
-                        <th>Comments</th>
+        fetchData();
+    }, [id]);
+    return(
+        <React.Fragment>
+                <h1>Jobs</h1>
+                <button onClick={fetchData}>Get all Jobs</button>
+                <h3>
+                    {data.map}
+                  {data.map(item => (
+                    <tr key={item.firstName}>
+                        <td>Customer:</td>
+                      <td>{item.customer}</td>
+                        <td>startDate:</td>
+                      <td>{item.startDate}</td>
+                        <td>days:</td>
+                      <td>{item.days}</td>
+                        <td>location:</td>
+                      <td>{item.location}</td>
+                        <td>comments:</td>
+                      <td>{item.comments}</td>
                     </tr>
-                </thead>
+                  ))}
+                </h3>
+        </React.Fragment>
+    )
 
-                <tbody>
-                    {jobsList.map((item) => {
-                        return (
-                            <tr key={item.jobId}>
-                                <td>{item.customer}</td>
-                                <td>{item.startDate}</td>
-                                <td>{item.location}</td>
-                                <td>{item.days}</td>
-                                <td>{item.comments}</td>
-                            </tr>
-                        );
-                    })}
-                </tbody>
-            </Table>
-        </div>
-    );
 }
-
-export default SeeJob;
+export default SeJobs;
