@@ -8,7 +8,7 @@ export async function Post({ Endpoint, object }) {
         bodyPost = JSON.stringify(object);
     }
 
-    var url = "https://localhost:7181/" + Endpoint; // Stien fra API + EndPoint
+    var url = "https://localhost:3000/" + Endpoint; // Stien fra API + EndPoint
     var res = await fetch(url, {
         method: "POST",
         body: bodyPost,

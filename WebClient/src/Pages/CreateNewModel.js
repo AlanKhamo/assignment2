@@ -1,9 +1,10 @@
 import React from 'react'
-import { PostNewModel } from '../NyModel/PostNewModel'
-export function NyModel() {
+//import { PostNewModel } from '../NyModel/PostNewModel'
+export default function NyModel() {
     return (
         <div>
-            <PostNewModel />
+            {/* <PostNewModel /> */}
+            Hello World
         </div>
     )
 }
