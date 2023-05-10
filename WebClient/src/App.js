@@ -19,50 +19,50 @@ function App() {
     // if (token) {
     //     return <Login/>;
     // }
-return (
-    <>
-    <Router>
-    <nav> 
-        <u1>
-            <li><Link to ="/Login">Login</Link></li>
-            <li><Link to ="/DeleteModelFromJob">delete Model from Job</Link></li>
-            <li><Link to ="/SeeJob">See Jobs</Link></li>
-            
-            <li><Link to ="/newModel">Opret Ny Model</Link></li>
-            <li><Link to ="/newJob">Opret Nyt Job </Link></li>
-            <li><Link to ="/newManager">Opret Ny Manager </Link></li>
-            <li><Link to ="/modelToJob">Tilføj model til job</Link></li>
-            <li><Link to ="/addExpense">tilføj en udgift til et job</Link></li>
-            <li><Link to ="/Logout">LogOut</Link></li>
-    
-            </u1>
-    </nav>
+    return (
+        <>
+            <Router>
+                <nav>
+                    <u1>
+                        <li><Link to="/Login">LogIn</Link></li>
+                        <li><Link to="/DeleteModelFromJob">Delete Model From Job</Link></li>
+                        <li><Link to="/SeeJob">See Jobs</Link></li>
 
-    <Routes>
-     <Route element={<PrivateRoutes/>}>
-     
-   
-     </Route>
-     <Route path ="/Login" element={<Login/>} ></Route>
-     <Route path="/Logout" element={<Logout/>} ></Route>
-     
-     {/* // Moving the statements below to the privateRoute later */}
+                        <li><Link to="/newModel">Opret Ny Model</Link></li>
+                        <li><Link to="/newJob">Opret Nyt Job </Link></li>
+                        <li><Link to="/newManager">Opret Ny Manager </Link></li>
+                        <li><Link to="/modelToJob">Tilføj Model til Job</Link></li>
+                        <li><Link to="/addExpense">tilføj en Udgift til et Job</Link></li>
+                        <li><Link to="/Logout">LogOut</Link></li>
 
-     <Route path="/newModel" element={<CreateNewModel/>} ></Route>
-     <Route path="/newJob" element={<CreateNewJob/>} ></Route>
-     <Route path="/newManager" element={<CreateNewManager/>} ></Route>
+                    </u1>
+                </nav>
 
-     <Route path="/modelToJob" element={<AddModelToJOb/>} ></Route>
-     <Route path="/DeleteModelFromJob" element={<DeleteModelFromJob/>} ></Route>
-     <Route path="/SeeJob" element={<SeeJob/>} ></Route>
-     <Route path="/addExpense" element={<AddExpenseToJob/>} ></Route>
+                <Routes>
+                    <Route element={<PrivateRoutes />}>
 
 
-   </Routes>
-   </Router>
-    </>
-    
+                    </Route>
+                    <Route path="/Login" element={<Login />} ></Route>
+                    <Route path="/Logout" element={<Logout />} ></Route>
 
-);
+                    {/* // Moving the statements below to the privateRoute later */}
+
+                    <Route path="/newModel" element={<CreateNewModel />} ></Route>
+                    <Route path="/newJob" element={<CreateNewJob />} ></Route>
+                    <Route path="/newManager" element={<CreateNewManager />} ></Route>
+
+                    <Route path="/modelToJob" element={<AddModelToJOb />} ></Route>
+                    <Route path="/DeleteModelFromJob" element={<DeleteModelFromJob />} ></Route>
+                    <Route path="/SeeJob" element={<SeeJob />} ></Route>
+                    <Route path="/addExpense" element={<AddExpenseToJob />} ></Route>
+
+
+                </Routes>
+            </Router>
+        </>
+
+
+    );
 }
 export default App;
