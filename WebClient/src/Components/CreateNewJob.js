@@ -4,7 +4,7 @@ import { useState } from 'react';
 function TilføjJobs(param){
     return(
         <React.Fragment>
-                  <div> Tilføj job</div> 
+                  <div> Create Job</div> 
                   <br></br>  
                 <MyForm></MyForm>
                 <br></br>    

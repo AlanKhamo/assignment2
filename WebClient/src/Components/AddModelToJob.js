@@ -3,7 +3,7 @@ import { useState } from 'react';
 function TilføjModelTilJob(){
     return(
         <React.Fragment>
-                  <div> Tilføj en model til et job </div> 
+                  <div> Add Model to a Job </div> 
                   <br></br>  
                 <MyForm></MyForm>
                 <br></br>    

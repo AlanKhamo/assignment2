@@ -3,7 +3,7 @@ import { useState } from 'react';
 function TilføjModel(){
     return(
         <React.Fragment>
-                  <div> Tilføj Model </div> 
+                  <div> Create Model </div> 
                   <br></br>  
                 <MyForm></MyForm>
                 <br></br>    

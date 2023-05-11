@@ -25,14 +25,14 @@ function App() {
                 <nav>
                     <u1>
                         <li><Link to="/Login">LogIn</Link></li>
-                        <li><Link to="/DeleteModelFromJob">Delete Model From Job</Link></li>
+                        <li><Link to="/DeleteModelFromJob">Remove Model From Job</Link></li>
                         <li><Link to="/SeeJob">See Jobs</Link></li>
 
-                        <li><Link to="/newModel">Opret Ny Model</Link></li>
-                        <li><Link to="/newJob">Opret Nyt Job </Link></li>
-                        <li><Link to="/newManager">Opret Ny Manager </Link></li>
-                        <li><Link to="/modelToJob">Tilføj Model til Job</Link></li>
-                        <li><Link to="/addExpense">tilføj en Udgift til et Job</Link></li>
+                        <li><Link to="/newModel">Add New Model</Link></li>
+                        <li><Link to="/newJob">Add New Job </Link></li>
+                        <li><Link to="/newManager">Add New Manager </Link></li>
+                        <li><Link to="/modelToJob">Add Model to a Job</Link></li>
+                        <li><Link to="/addExpense">Add Expenses to a Job</Link></li>
                         <li><Link to="/Logout">LogOut</Link></li>
 
                     </u1>

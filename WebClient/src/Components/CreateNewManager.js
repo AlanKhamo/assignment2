@@ -3,7 +3,7 @@ import { useState } from 'react';
 function TilføjManager(){
     return(
         <React.Fragment>
-                  <div> Tilføj Manager </div> 
+                  <div> Create Manager </div> 
                   <br></br>  
                 <MyForm></MyForm>
                 <br></br>    
