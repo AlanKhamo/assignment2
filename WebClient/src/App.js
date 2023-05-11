@@ -45,17 +45,19 @@ function App() {
                     </Route>
                     <Route path="/Login" element={<Login />} ></Route>
                     <Route path="/Logout" element={<Logout />} ></Route>
+                    <Route path="/SeeJob" element={<SeeJob />} ></Route>
+                    <Route path="/addExpense" element={<AddExpenseToJob />} ></Route>
 
                     {/* // Moving the statements below to the privateRoute later */}
 
-                    <Route path="/newModel" element={<CreateNewModel />} ></Route>
-                    <Route path="/newJob" element={<CreateNewJob />} ></Route>
-                    <Route path="/newManager" element={<CreateNewManager />} ></Route>
+                    <Route element={<PrivateRoutes token={token} />}>
 
-                    <Route path="/modelToJob" element={<AddModelToJOb />} ></Route>
-                    <Route path="/DeleteModelFromJob" element={<DeleteModelFromJob />} ></Route>
-                    <Route path="/SeeJob" element={<SeeJob />} ></Route>
-                    <Route path="/addExpense" element={<AddExpenseToJob />} ></Route>
+                        <Route path="/newModel" element={<CreateNewModel />} ></Route>
+                        <Route path="/newJob" element={<CreateNewJob />} ></Route>
+                        <Route path="/newManager" element={<CreateNewManager />} ></Route>
+                        <Route path="/modelToJob" element={<AddModelToJOb />} ></Route>
+                        <Route path="/DeleteModelFromJob" element={<DeleteModelFromJob />} ></Route>
+                    </Route>
 
 
                 </Routes>
